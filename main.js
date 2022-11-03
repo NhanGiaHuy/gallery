@@ -46,6 +46,10 @@ var imgList = [
 
 const citySection = $('.city .img-container');
 const natureSection = $('.nature .img-container');
+const modal = $('.modal');
+const closeBtn = $('.close-btn');
+const nextBtn = $('next-btn');
+const prevBtn = $('prev-btn');
 
 function render() {
     let cityImagePosition = -1;
@@ -73,7 +77,7 @@ function render() {
 
 function openImg() {
     const imgs = $$('.img');
-    const modal = $('.modal');
+    
     console.log(imgs);
     console.log(modal);
     imgs.forEach((img,index) => {
@@ -81,7 +85,18 @@ function openImg() {
             modal.classList.add('opened');
         }
     });
+    
+    closeViewImg();
+
 }
+
+function closeViewImg(){
+    closeBtn.onclick = () =>{
+        modal.classList.remove('opened');
+    }
+}
+
+
 
 function start() {
     render();
