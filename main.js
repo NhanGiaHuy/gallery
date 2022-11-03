@@ -47,7 +47,6 @@ var imgList = [
 const citySection = $('.city .img-container');
 const natureSection = $('.nature .img-container');
 
-
 function render() {
     let cityImagePosition = -1;
     let htmlCityImg = imgList.map((img,index)=>{
@@ -72,24 +71,21 @@ function render() {
     natureSection.innerHTML = htmlNatureImg.join('');
 }
 
-
-// function next() {
-//     const natureImages = $$('.nature .img');
-//     const cityImages = $$('.city .img');
-//     const natureImageContainer = $('.nature .img-container')
-//     natureImageContainer.style.transform = `translateX(-31rem)`;
-//     render();
-
-//     // natureImages.forEach((img,index) => {
-//     //     img.style.transform = `translateX(-${(index)*31}rem)`;
-//     // });
-//     // cityImages.forEach((img,index) => {
-//     //     img.style.transform = `translateX(-${(index)*31}rem)`;
-//     // });
-// }
+function openImg() {
+    const imgs = $$('.img');
+    const modal = $('.modal');
+    console.log(imgs);
+    console.log(modal);
+    imgs.forEach((img,index) => {
+        img.onclick = () => {
+            modal.classList.add('opened');
+        }
+    });
+}
 
 function start() {
     render();
+    openImg();
 }
 
 start()
