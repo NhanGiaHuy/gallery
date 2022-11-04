@@ -68,10 +68,14 @@ div.img img{
     top: 2rem;
     display:grid;
     grid-template-columns: 5% 90% 5%;
-    height: 30rem;
     width: 100%;
+    place-items: center;
 }
-
+.modal-content img{
+    height: 20rem;
+    width: 40rem;
+    object-fit: cover;
+}
 .prev-btn{
     position:relative;
     left: 0;
@@ -88,8 +92,22 @@ div.img img{
     opacity: 0.5;
 }
 
-.modal-content img{
-    height: 80%;
+.slide-imgs{
+    position:absolute;
+    bottom:0;
+    height: 5rem;
     width: 100%;
-    object-fit: cover;
+    
+}
+
+.slide-imgs div{
+    position: relative;
+    display: inline;
+    overflow: scroll;
+    
+}
+
+.slide-imgs img{
+    height: 5rem;
+    width: 10rem;
 }

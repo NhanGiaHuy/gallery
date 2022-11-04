@@ -47,6 +47,8 @@ var imgList = [
 const citySection = $('.city .img-container');
 const natureSection = $('.nature .img-container');
 const modal = $('.modal');
+const displayedImg = $('.img-display img');
+const slideImgs = $('.slide-imgs');
 const closeBtn = $('.close-btn');
 const nextBtn = $('next-btn');
 const prevBtn = $('prev-btn');
@@ -57,7 +59,7 @@ function render() {
         if(img.category === 'city'){
             cityImagePosition++;
             // return `<div class="img ${img.category}" style="left:${cityImagePosition*31}rem"><img src="${img.src}" alt=""></div>`;
-            return `<div class="img ${img.category}"><img src="${img.src}" alt=""></div>`;
+            return `<div class="img ${img.category}"><img class="${img.category}" src="${img.src}" alt=""></div>`;
  
         }
         
@@ -67,7 +69,7 @@ function render() {
         if(img.category === 'nature'){
             cityNaturePosition++;
             // return `<div class="img ${img.category}" style="left:${cityNaturePosition*31}rem"><img src="${img.src}" alt=""></div>`;
-            return `<div class="img ${img.category}"><img src="${img.src}" alt=""></div>`;
+            return `<div class="img ${img.category}"><img class="${img.category}" src="${img.src}" alt=""></div>`;
         }
         
     });
@@ -76,18 +78,36 @@ function render() {
 }
 
 function openImg() {
-    const imgs = $$('.img');
-    
-    console.log(imgs);
-    console.log(modal);
+    const imgs = $$('.img img');
     imgs.forEach((img,index) => {
         img.onclick = () => {
+            displayedImg.src = img.src;  
             modal.classList.add('opened');
+            if(img.classList.contains('city')){
+                console.log('city');
+                let cityImagePosition = -1;
+                let htmlCityImg = imgList.map((img,index)=>{
+                    if(img.category === 'city'){
+                        cityImagePosition++;
+                        return `<div><img src="${img.src}" alt=""></div>`;
+                    }
+                });
+                slideImgs.innerHTML = htmlCityImg.join('');
+            }else{
+                console.log('nature');
+                let natureImagePosition = -1;
+                let htmlNatureImg = imgList.map((img,index)=>{
+                    if(img.category === 'nature'){
+                        natureImagePosition++;
+                        return `<div><img src="${img.src}" alt=""></div>`;
+                    }
+                });
+                slideImgs.innerHTML = htmlNatureImg.join('');
+            }
         }
     });
     
     closeViewImg();
-
 }
 
 function closeViewImg(){
